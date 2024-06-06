@@ -4,8 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import people.peopleman.domain.Member;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class MemberRepository implements MemberRepositoryImpl {
@@ -26,5 +25,13 @@ public class MemberRepository implements MemberRepositoryImpl {
 
         memberRepository.put(seq, member);
 
+    }
+
+    @Override
+    public List<Member> memberList() {
+
+        List<Member> memberList = new ArrayList<>(memberRepository.values());
+
+        return memberList;
     }
 }

@@ -1,10 +1,10 @@
 package people.peopleman.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import people.peopleman.repository.MemberRepository;
-import people.peopleman.repository.MemberRepositoryImpl;
 
 
 @Controller
@@ -18,8 +18,20 @@ public class MemberController {
     }
 
     @PostMapping("input")
-    public void input(String name){
+    public String input(String name){
         memberRepository.save(name);
+        return "redirect:/";
     }
+
+    @GetMapping("search")
+    public String search (Model model){
+
+        model.addAttribute("members", memberRepository.memberList());
+
+        return "memberList";
+    }
+
+
+
 
 }
